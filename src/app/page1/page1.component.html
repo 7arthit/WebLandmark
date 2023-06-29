@@ -1,0 +1,92 @@
+<body>
+    <div class="container">
+        <p-toolbar>
+            <div class="p-toolbar-group-left fonts1">
+                <div class="p-toolbar-group-left fonts1">
+                    <p>สถานที่ท่องเที่ยว</p>
+                </div>
+                <div class="p-toolbar-group-right fonts2"></div>
+            </div>
+        </p-toolbar>
+    </div>
+</body><br>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <p-dataView [value]="landmarks" [paginator]="true" [rows]="9" layout="grid">
+                <ng-template let-land pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="" (click)="golandmark(land.name)">
+                            <div class="">
+                                <div class="">{{land.name}}</div>
+                                <img src="{{land.image}}" alt="" width="250">
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+</body><br>
+
+<body>
+    <div class="container">
+        <p-toolbar>
+            <div class="p-toolbar-group-left fonts1">
+                <div class="p-toolbar-group-left fonts1">
+                    ข้อมูล ณ.วันที่ {{this.Date | thaidate: 'short'}}
+                </div>
+                <div class="p-toolbar-group-right fonts2"></div>
+            </div>
+        </p-toolbar>
+    </div>
+</body>
+
+<p-dialog header="สถานที่ท่องเที่ยว" [(visible)]="display_img" [modal]="true" [style]="{width: '35vw'}"
+    [resizable]="false">
+    <div class="row">
+        <div class="col-12">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i>&nbsp;&nbsp;&nbsp;ชื่อสถานที่&nbsp;&nbsp;&nbsp;</i></span>
+                <input type="text"  pInputText placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="p-inputgroup">
+                    <span
+                        class="p-inputgroup-addon"><i>&nbsp;&nbsp;&nbsp;&nbsp;ประเทศ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></span>
+                </div>
+            </div>
+            <div class="col-9 text-start">
+                <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i>&nbsp;&nbsp;รายละเอียด&nbsp;&nbsp;</i></span>
+                <textarea rows="5" cols="30" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="p-inputgroup">
+                <span
+                    class="p-inputgroup-addon"><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รูปภาพ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></span>
+                <input type="text" pInputText placeholder="">
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer-center">
+        <div class="row">
+            <div class="col-10 text-end">
+                <button pButton pRipple (click)="ok()" label="บันทึก"></button>
+            </div>
+            <div class="col-2 text-end">
+                <button pButton pRipple (click)="no()" label="ยกเลิก"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
